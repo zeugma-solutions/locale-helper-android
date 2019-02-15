@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">[CN]示例</string>
+    <string name="main_activity_title">此标题为英文</string>
+    <string name="main_activity_desc">这是英文描述文本。</string>
+    <string name="main_activity_about">这是关于英文的文本。</string>
+    <string name="main_activity_to_tr_button">土耳其语</string>
+    <string name="main_activity_to_en_button">英文</string>
+    <string name="main_activity_toolbar_title">英文标题</string>
+    <string name="second_activity_title">[CN]英文第二项活动</string>
+    <string name="second_activity_desc">第二个描述文本是英文。</string>
+    <string name="main_activity_to_cn_button">中文</string>
+    <string name="main_second_activity">第二页 ></string>
+    <string name="back_button"><![CDATA[< 回去]]></string>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">[TR]Dil Degistirme Ornegi</string>
+    <string name="main_activity_title">Bu baslik Turkcedir</string>
+    <string name="main_activity_desc">Bu aciklama yazisi Turkcedir.</string>
+    <string name="main_activity_about">Bu hakkinda yazisi Turkcedir.</string>
+    <string name="main_activity_to_tr_button">Turkce</string>
+    <string name="main_activity_to_en_button">Ingilizce</string>
+    <string name="main_activity_toolbar_title">Turkce Baslik</string>
+    <string name="second_activity_title">[TR]Ikinci Baslik Turkce</string>
+    <string name="second_activity_desc">Ikinci aciklama yazisi Turkcedir.</string>
+    <string name="main_activity_to_cn_button">Cince</string>
+    <string name="main_second_activity">Ikinci sayfa ></string>
+    <string name="back_button"><![CDATA[< Geri]]></string>
+
+</resources>
