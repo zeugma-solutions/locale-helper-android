@@ -1,10 +1,8 @@
 package com.zeugmasolutions.localehelper
 
 import android.annotation.TargetApi
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.os.Build
 import java.util.*
 
@@ -18,17 +16,6 @@ object LocaleHelper {
         return setLocale(context, locale)
     }
 
-//    fun onConfigurationChanged(context: Context): Configuration {
-//        val locale = load(context)
-//
-//        configuration.locale = locale
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-//            configuration.setLayoutDirection(locale)
-//        }
-//
-//        return configuration
-//    }
-
     fun getLocale(context: Context): Locale {
         return load(context)
     }
@@ -40,11 +27,6 @@ object LocaleHelper {
             updateResources(context, locale)
         } else updateResourcesLegacy(context, locale)
 
-    }
-
-    fun setLocaleAndRestart(activity: Activity, locale: Locale) {
-        setLocale(activity.baseContext, locale)
-        activity.recreate()
     }
 
     private fun getPreferences(context: Context): SharedPreferences {
@@ -78,6 +60,7 @@ object LocaleHelper {
         return context.createConfigurationContext(configuration)
     }
 
+    @SuppressWarnings("deprecation")
     private fun updateResourcesLegacy(context: Context, locale: Locale): Context {
         Locale.setDefault(locale)
 
