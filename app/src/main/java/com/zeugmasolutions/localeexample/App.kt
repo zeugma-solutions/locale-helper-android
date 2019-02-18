@@ -1,5 +1,6 @@
-package com.zeugmasolutions.localehelper
+package com.zeugmasolutions.localeexample
 
+import com.zeugmasolutions.localehelper.LocaleAwareApp
 import java.util.*
 
 class App : LocaleAwareApp() {

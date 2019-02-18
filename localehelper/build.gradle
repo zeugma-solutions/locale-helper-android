@@ -1,6 +1,25 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.novoda.bintray-release'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9'
+    }
+}
+
+publish {
+    userOrg = 'zeugma-solutions'
+    groupId = 'com.zeugmasolutions.localehelper'
+    artifactId = 'locale-helper-android'
+    publishVersion = '1.0.0'
+    desc = 'Locale Helper Android'
+    website = 'https://github.com/zeugma-solutions/locale-helper-android'
+}
 
 android {
     compileSdkVersion 28

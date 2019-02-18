@@ -1,7 +1,8 @@
-package com.zeugmasolutions.localehelper
+package com.zeugmasolutions.localeexample
 
 import android.content.Intent
 import android.os.Bundle
+import com.zeugmasolutions.localehelper.Locales
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
