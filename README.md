@@ -14,9 +14,23 @@ However, there are cases where you would want to change the language of your app
 **Download**
 =
 ```groovy
-implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.0.0'
+implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.0.1'
 ```
-**Usage**
+**Features**
+=
+1. Changes language on-the-fly
+2. Persists the changes in `Preferences` automatically
+3. Detects changes when activity loads from backstack
+4. Detects Right-To-Left (RTL) languages and updates layout direction
+5. Small footprint (~3KB, ~50 methods), easy to use
+
+**Demo**
+=
+![Demo video](https://media.giphy.com/media/1yn08zPcfNWNTDGuNt/giphy.gif)
+
+[Demo source code](https://github.com/zeugma-solutions/locale-helper-android/tree/master/app "Demo source code")
+
+**Setup**
 =
 **(Option 1) Using base classes**
 1. Extend your app class
@@ -29,36 +43,92 @@ class App : LocaleAwareApp() {
 open class BaseActivity : LocaleAwareCompatActivity() {  
 }
 ```
-LocaleAwareCompatActivity provides a helper method called ```updateLocale```
+`LocaleAwareCompatActivity` provides a helper method called ```updateLocale```
 
 That's it.
 
-**(Option 2) Overriding methods**
+**(Option 2) Using delegates**
+
 This option requires you to do extra steps if you don't want to extend from base classes.
-1. On your custom Application class override onAttach and onConfiguration change methods.
+1. On your custom Application class override `onAttach` and `onConfiguration` change methods.
 ```kotlin
-open class MyApp : Application() {  
-    override fun attachBaseContext(base: Context) {  
-        super.attachBaseContext(LocaleHelper.onAttach(base))  
-    }  
-  
-    override fun onConfigurationChanged(newConfig: Configuration) {  
-        LocaleHelper.onAttach(this)  
-    }  
+class MyApp : Application() {  
+    private val localeAppDelegate = LocaleHelperApplicationDelegate()
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(localeAppDelegate.attachBaseContext(base))
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        localeAppDelegate.onConfigurationChanged(this)
+    } 
 }
 ```
-2. On your base activity class override onAttach and add a helper method
+2. On your base activity class override `onAttach` and add a helper method
 ```kotlin
 open class BaseActivity : AppCompatActivity() {  
-  
-    override fun attachBaseContext(newBase: Context) {  
-        super.attachBaseContext(LocaleHelper.onAttach(newBase))  
-    }  
-  
-    open fun updateLocale(locale: Locale) {  
-        LocaleHelper.setLocale(this, locale)  
-        recreate()  
+    private val localeDelegate = LocaleHelperActivityDelegateImpl()
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(localeDelegate.attachBaseContext(newBase))
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        localeDelegate.onCreate(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        localeDelegate.onResumed(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        localeDelegate.onPaused()
+    }
+
+    open fun updateLocale(locale: Locale) {
+        localeDelegate.setLocale(this, locale)
     }  
 }
 ```
+**Usage**
+=
+(Option 1)
 
+If you're using the base classes, just call `updateLocale(newLocale)`. It will then update the locale and restart the activity.
+
+Example:
+```kotlin 
+toTRButton.setOnClickListener { updateLocale(Locales.Turkish) }
+``` 
+In `java.util.Locale` class most of the common `Locales` and their variants are defined. However, it doesn't contain all the Locales so `com.zeugmasolutions.Locales` provides the missing ones for easy access. 
+
+
+(Option 2)
+
+To change the locale you can directly call `setLocale`
+```kotlin 
+LocaleHelper.setLocale(locale:Locale)
+``` 
+Then you have to handle activity recreation by yourself calling `activity.recreate()`
+
+**Notes**
+=
+1. actionbar(toolbar) title should be set when `onCreate` is called.
+```kotlin 
+override fun onCreate(savedInstanceState: Bundle?) {
+	super.onCreate(savedInstanceState)
+	setContentView(R.layout.activity_main) //sample
+
+	setTitle(R.string.main_activity_title) //sample
+}
+``` 
+2. If your locale is Right-To-Left(RTL) don't forget to enable it in the `AndroidManifest.xml`
+```xml
+<application
+	android:supportsRtl="true">
+</application>
+``` 
