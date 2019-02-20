@@ -29,6 +29,10 @@ object LocaleHelper {
 
     }
 
+    fun isRTL(locale: Locale): Boolean {
+        return Locales.RTL.contains(locale.language)
+    }
+
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(LocaleHelper::class.java.name, Context.MODE_PRIVATE)
     }
@@ -76,4 +80,5 @@ object LocaleHelper {
 
         return context
     }
+
 }

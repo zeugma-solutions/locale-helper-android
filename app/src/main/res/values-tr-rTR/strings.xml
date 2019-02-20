@@ -12,5 +12,6 @@
     <string name="main_activity_to_cn_button">Cince</string>
     <string name="main_second_activity">Ikinci sayfa ></string>
     <string name="back_button"><![CDATA[< Geri]]></string>
+    <string name="main_activity_to_ur_button">Urduca</string>
 
 </resources>

@@ -1,9 +1,9 @@
 package com.zeugmasolutions.localeexample
 
-import com.zeugmasolutions.localehelper.LocaleAwareApp
+import com.zeugmasolutions.localehelper.LocaleAwareApplication
 import java.util.*
 
-class App : LocaleAwareApp() {
+class Application : LocaleAwareApplication() {
     override fun onCreate() {
         super.onCreate()
 

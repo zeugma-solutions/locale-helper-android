@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">[UR]علاقائی مددگار مثال</string>
+    <string name="main_activity_title">یہ عنوان انگریزی میں ہے</string>
+    <string name="main_activity_desc">یہ انگریزی میں وضاحت متن ہے.</string>
+    <string name="main_activity_about">یہ انگریزی میں متن کے بارے میں ہے.</string>
+    <string name="main_activity_to_tr_button">ترکی</string>
+    <string name="main_activity_to_en_button">انگریزی</string>
+    <string name="main_activity_toolbar_title">اردو میں اردو</string>
+    <string name="second_activity_title">[UR]اردو میں دوسری سرگرمی</string>
+    <string name="second_activity_desc">دوسرا وضاحت متن اردو میں ہے.</string>
+    <string name="main_activity_to_cn_button">چینی</string>
+    <string name="main_second_activity">دوسرا صفحہ></string>
+    <string name="back_button"><![CDATA[واپس جاؤ]]></string>
+    <string name="main_activity_to_ur_button">اردو</string>
+
+</resources>

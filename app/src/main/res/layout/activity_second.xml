@@ -16,52 +16,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/second_activity_title"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
     <TextView
             android:id="@+id/descTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/second_activity_desc" />
+            android:text="@string/second_activity_desc"/>
 
     <TextView
             android:id="@+id/aboutTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/main_activity_about" />
+            android:text="@string/main_activity_about"/>
 
-    <LinearLayout
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/toTRButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/main_activity_to_tr_button"/>
-
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/toENButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_weight="1"
-                android:text="@string/main_activity_to_en_button"/>
-
-        <com.google.android.material.button.MaterialButton
-                android:id="@+id/toCNButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:layout_weight="1"
-                android:text="@string/main_activity_to_cn_button"/>
-
-    </LinearLayout>
+    <include layout="@layout/view_language_buttons"/>
 
     <com.google.android.material.button.MaterialButton
             style="@style/AppTheme.Button.Text"

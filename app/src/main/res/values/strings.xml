@@ -11,4 +11,5 @@
     <string name="main_activity_to_cn_button">Chinese</string>
     <string name="main_second_activity">Second page ></string>
     <string name="back_button"><![CDATA[< Go back]]></string>
+    <string name="main_activity_to_ur_button">Urdu</string>
 </resources>

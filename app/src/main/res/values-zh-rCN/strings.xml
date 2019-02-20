@@ -12,5 +12,6 @@
     <string name="main_activity_to_cn_button">中文</string>
     <string name="main_second_activity">第二页 ></string>
     <string name="back_button"><![CDATA[< 回去]]></string>
+    <string name="main_activity_to_ur_button">乌尔都语</string>
 
 </resources>
