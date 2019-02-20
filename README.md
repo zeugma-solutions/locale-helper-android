@@ -26,7 +26,7 @@ implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.0.1'
 
 **Demo**
 =
-![Demo video](https://media.giphy.com/media/1yn08zPcfNWNTDGuNt/giphy.gif)
+![Demo video](https://media.giphy.com/media/1yidskG8wYqVIy3Pku/giphy.gif)
 
 [Demo source code](https://github.com/zeugma-solutions/locale-helper-android/tree/master/app "Demo source code")
 
