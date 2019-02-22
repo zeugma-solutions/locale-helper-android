@@ -16,7 +16,7 @@ publish {
     userOrg = 'zeugma-solutions'
     groupId = 'com.zeugmasolutions.localehelper'
     artifactId = 'locale-helper-android'
-    publishVersion = '1.0.1'
+    publishVersion = '1.0.2'
     desc = 'Locale Helper Android'
     website = 'https://github.com/zeugma-solutions/locale-helper-android'
 }
@@ -35,7 +35,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
