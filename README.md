@@ -109,11 +109,11 @@ In `java.util.Locale` class most of the common `Locales` and their variants are 
 
 (Option 2)
 
-To change the locale you can directly call `setLocale`
+To change the locale you can call `setLocale` on the delegate
 ```kotlin 
-LocaleHelper.setLocale(locale:Locale)
+localeDelegate.setLocale(this, locale)
 ``` 
-Then you have to handle activity recreation by yourself calling `activity.recreate()`
+The delegate will set the new locale and recreate the activity.
 
 **Notes**
 =
