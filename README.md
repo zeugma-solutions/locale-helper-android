@@ -35,7 +35,7 @@ implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.0.2'
 **(Option 1) Using base classes**
 1. Extend your app class
 ```kotlin
-class App : LocaleAwareApp() {
+class App : LocaleAwareApplication() {
 }
 ```
 2. Extend your base activity class
