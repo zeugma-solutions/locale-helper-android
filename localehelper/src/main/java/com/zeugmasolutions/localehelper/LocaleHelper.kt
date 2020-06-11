@@ -3,6 +3,7 @@ package com.zeugmasolutions.localehelper
 import android.annotation.TargetApi
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Build
 import java.util.*
 
@@ -10,6 +11,8 @@ object LocaleHelper {
 
     private const val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
     private const val SELECTED_COUNTRY = "Locale.Helper.Selected.Country"
+
+    var configurationBlock: ((Configuration) -> Unit)? = null
 
     fun onAttach(context: Context): Context {
         val locale = load(context)
@@ -61,6 +64,8 @@ object LocaleHelper {
         configuration.setLocale(locale)
         configuration.setLayoutDirection(locale)
 
+        configurationBlock?.invoke(configuration)
+
         return context.createConfigurationContext(configuration)
     }
 
@@ -75,6 +80,8 @@ object LocaleHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             configuration.setLayoutDirection(locale)
         }
+
+        configurationBlock?.invoke(configuration)
 
         resources.updateConfiguration(configuration, resources.displayMetrics)
 
