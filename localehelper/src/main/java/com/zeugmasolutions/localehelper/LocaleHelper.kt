@@ -11,14 +11,9 @@ object LocaleHelper {
     private const val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
     private const val SELECTED_COUNTRY = "Locale.Helper.Selected.Country"
 
-    fun onAttach(context: Context): Context {
-        val locale = load(context)
-        return setLocale(context, locale)
-    }
+    fun onAttach(context: Context): Context = setLocale(context, load(context))
 
-    fun getLocale(context: Context): Locale {
-        return load(context)
-    }
+    fun getLocale(context: Context): Locale = load(context)
 
     fun setLocale(context: Context, locale: Locale): Context {
         persist(context, locale)
@@ -26,12 +21,9 @@ object LocaleHelper {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             updateResources(context, locale)
         } else updateResourcesLegacy(context, locale)
-
     }
 
-    fun isRTL(locale: Locale): Boolean {
-        return Locales.RTL.contains(locale.language)
-    }
+    fun isRTL(locale: Locale): Boolean = Locales.RTL.contains(locale.language)
 
     private fun getPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(LocaleHelper::class.java.name, Context.MODE_PRIVATE)
@@ -48,8 +40,9 @@ object LocaleHelper {
 
     private fun load(context: Context): Locale {
         val preferences = getPreferences(context)
-        val language = preferences.getString(SELECTED_LANGUAGE, Locale.getDefault().language)
-        val country = preferences.getString(SELECTED_COUNTRY, Locale.getDefault().country)
+        val default = Locale.getDefault()
+        val language = preferences.getString(SELECTED_LANGUAGE, default.language) ?: return default
+        val country = preferences.getString(SELECTED_COUNTRY, default.country) ?: return default
         return Locale(language, country)
     }
 
@@ -64,14 +57,15 @@ object LocaleHelper {
         return context.createConfigurationContext(configuration)
     }
 
-    @SuppressWarnings("deprecation")
+    @Suppress("DEPRECATION")
     private fun updateResourcesLegacy(context: Context, locale: Locale): Context {
         Locale.setDefault(locale)
 
         val resources = context.resources
 
         val configuration = resources.configuration
-        configuration.locale = locale
+        configuration.setCurrentLocale(locale)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             configuration.setLayoutDirection(locale)
         }
@@ -80,5 +74,4 @@ object LocaleHelper {
 
         return context
     }
-
 }
