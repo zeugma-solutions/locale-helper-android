@@ -3,6 +3,7 @@ package com.zeugmasolutions.localehelper
 import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
@@ -34,6 +35,8 @@ open class LocaleAwareCompatActivity : AppCompatActivity() {
             localeDelegate.applyOverrideConfiguration(baseContext, overrideConfiguration)
         )
     }
+
+    override fun getResources(): Resources = localeDelegate.getResources(super.getResources())
 
     open fun updateLocale(locale: Locale) {
         localeDelegate.setLocale(this, locale)

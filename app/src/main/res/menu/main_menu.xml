@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/action_dark"
+            android:orderInCategory="100"
+            android:title="@string/dark"
+            app:showAsAction="ifRoom" />
+    <item
+            android:id="@+id/action_light"
+            android:orderInCategory="200"
+            android:title="@string/light"
+            app:showAsAction="ifRoom"/>
+</menu>
