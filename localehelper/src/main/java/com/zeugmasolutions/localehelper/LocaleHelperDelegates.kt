@@ -3,6 +3,7 @@ package com.zeugmasolutions.localehelper
 import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Build
 import android.view.View
 import java.util.*
@@ -18,6 +19,7 @@ interface LocaleHelperActivityDelegate {
     fun onPaused()
     fun onResumed(activity: Activity)
     fun onCreate(activity: Activity)
+    fun getResources(resources: Resources): Resources
 }
 
 class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
@@ -41,12 +43,18 @@ class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
     override fun applyOverrideConfiguration(
         baseContext: Context, overrideConfiguration: Configuration?
     ): Configuration? {
-        if (overrideConfiguration != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            val uiMode = overrideConfiguration.uiMode
-            overrideConfiguration.setTo(baseContext.resources.configuration)
-            overrideConfiguration.uiMode = uiMode
-        }
+        overrideConfiguration?.setTo(baseContext.resources.configuration)
+        overrideConfiguration?.setCurrentLocale(Locale.getDefault())
         return overrideConfiguration
+    }
+
+    override fun getResources(resources: Resources): Resources {
+        return if (resources.configuration.currentLocale == Locale.getDefault()) {
+            resources
+        } else {
+            resources.configuration.setCurrentLocale(Locale.getDefault())
+            resources
+        }
     }
 
     override fun onPaused() {

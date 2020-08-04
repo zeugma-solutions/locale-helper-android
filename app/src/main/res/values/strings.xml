@@ -12,4 +12,6 @@
     <string name="main_second_activity">Second page ></string>
     <string name="back_button"><![CDATA[< Go back]]></string>
     <string name="main_activity_to_ur_button">Urdu</string>
+    <string name="dark" translatable="false">Dark</string>
+    <string name="light" translatable="false">Light</string>
 </resources>

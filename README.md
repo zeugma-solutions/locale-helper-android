@@ -14,7 +14,7 @@ However, there are cases where you would want to change the language of your app
 **Download**
 =
 ```groovy
-implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.0.3'
+implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.0.4'
 ```
 **Features**
 =
@@ -94,6 +94,8 @@ open class BaseActivity : AppCompatActivity() {
         super.onPause()
         localeDelegate.onPaused()
     }
+    
+    override fun getResources(): Resources = localeDelegate.getResources(super.getResources())
 
     open fun updateLocale(locale: Locale) {
         localeDelegate.setLocale(this, locale)
