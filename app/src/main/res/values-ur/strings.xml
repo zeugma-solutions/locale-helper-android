@@ -12,5 +12,6 @@
     <string name="main_second_activity">دوسرا صفحہ></string>
     <string name="back_button"><![CDATA[واپس جاؤ]]></string>
     <string name="main_activity_to_ur_button">اردو</string>
+    <string name="accessibality_font_size">رسائی: فونٹ سائز</string>
 
 </resources>

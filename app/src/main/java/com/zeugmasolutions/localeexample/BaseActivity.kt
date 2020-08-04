@@ -13,7 +13,7 @@ open class BaseActivity : LocaleAwareCompatActivity() {
 
     override fun attachBaseContext(newBase: Context) {
         LocaleHelper.configurationBlock = {
-            it.fontScale = 1.0f
+            it.fontScale = Application.FONT_SCALE
         }
         super.attachBaseContext(newBase)
     }

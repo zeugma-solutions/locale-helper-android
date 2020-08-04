@@ -8,6 +8,11 @@ import com.zeugmasolutions.localehelper.LocaleAwareApplication
 import com.zeugmasolutions.localehelper.LocaleHelper
 
 class Application : LocaleAwareApplication() {
+
+    companion object {
+        var FONT_SCALE = 1.0f
+    }
+
     override fun onCreate() {
         super.onCreate()
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
@@ -15,7 +20,7 @@ class Application : LocaleAwareApplication() {
 
     override fun attachBaseContext(base: Context) {
         LocaleHelper.configurationBlock = {
-            it.fontScale = 1.0f
+            it.fontScale = FONT_SCALE
         }
 
         super.attachBaseContext(base)
