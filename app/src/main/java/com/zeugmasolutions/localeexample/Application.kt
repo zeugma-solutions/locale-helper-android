@@ -1,12 +1,12 @@
 package com.zeugmasolutions.localeexample
 
+import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.multidex.MultiDex
-import com.zeugmasolutions.localehelper.LocaleAwareApplication
 
-class Application : LocaleAwareApplication() {
+class Application : Application() {
     override fun onCreate() {
         super.onCreate()
         AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
