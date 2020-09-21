@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">[EN]Locale Helper Example</string>
-    <string name="main_activity_title">This title is in English</string>
+    <string name="main_activity_title">[EN] This title is in English</string>
     <string name="main_activity_desc">This is the description text in English.</string>
     <string name="main_activity_about">This is about text in English.</string>
     <string name="main_activity_to_tr_button">Turkish</string>
     <string name="main_activity_to_en_button">English</string>
     <string name="main_activity_toolbar_title">Title in English</string>
-    <string name="second_activity_title">[EN]Second activity in English</string>
+    <string name="second_activity_title">[EN] Second activity in English</string>
     <string name="second_activity_desc">Second description text is in English.</string>
     <string name="main_activity_to_cn_button">Chinese</string>
     <string name="main_second_activity">Second page ></string>

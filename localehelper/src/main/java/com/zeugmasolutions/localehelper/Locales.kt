@@ -3,7 +3,6 @@ package com.zeugmasolutions.localehelper
 import java.util.*
 
 object Locales {
-
     val Afrikaans: Locale by lazy { Locale("af", "ZA") }
     val Albanian: Locale by lazy { Locale("sq", "AL") }
     val Arabic: Locale by lazy { Locale("ar", "SA") }
@@ -55,7 +54,9 @@ object Locales {
     val Vietnamese: Locale by lazy { Locale("vi", "VN") }
     val Zulu: Locale by lazy { Locale("zu", "ZA") }
 
-
+    /**
+     * List of language codes for Right-To-Left languages
+     */
     val RTL: Set<String> by lazy {
         hashSetOf(
             "ar",
