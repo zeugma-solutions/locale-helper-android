@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">[UR]علاقائی مددگار مثال</string>
-    <string name="main_activity_title">یہ عنوان انگریزی میں ہے</string>
+    <string name="main_activity_title">یہ عنوان انگریزی میں ہے[UR]</string>
     <string name="main_activity_desc">یہ انگریزی میں وضاحت متن ہے.</string>
     <string name="main_activity_about">یہ انگریزی میں متن کے بارے میں ہے.</string>
     <string name="main_activity_to_tr_button">ترکی</string>
