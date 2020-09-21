@@ -6,14 +6,20 @@ import android.os.Build
 import java.util.*
 
 object LocaleHelper {
-
     private const val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
     private const val SELECTED_COUNTRY = "Locale.Helper.Selected.Country"
+    private var initialized = false
 
     /**
      * Attach the selected or default [Locale] to the [context]
      */
-    fun onAttach(context: Context): Context = setLocale(context, load(context))
+    fun onAttach(context: Context): Context {
+        if (!initialized) {
+            Locale.setDefault(load(context))
+            initialized = true
+        }
+        return updateContextResources(context, Locale.getDefault())
+    }
 
     /**
      * Gets the currently saved [Locale] from [SharedPreferences] or returns [Locale.getDefault]

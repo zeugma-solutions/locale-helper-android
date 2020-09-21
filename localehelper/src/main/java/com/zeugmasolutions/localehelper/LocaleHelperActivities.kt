@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 open class LocaleAwareCompatActivity : AppCompatActivity() {
-    private val localeDelegate = LocaleHelperActivityDelegateImpl()
+    private val localeDelegate: LocaleHelperActivityDelegate = LocaleHelperActivityDelegateImpl()
 
     override fun getDelegate() = localeDelegate.getAppCompatDelegate(super.getDelegate())
 

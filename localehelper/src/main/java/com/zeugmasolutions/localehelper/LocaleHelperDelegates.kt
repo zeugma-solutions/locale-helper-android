@@ -14,6 +14,7 @@ interface LocaleHelperActivityDelegate {
     fun onPaused()
     fun onResumed(activity: Activity)
     fun onCreate(activity: Activity)
+    fun getApplicationContext(applicationContext: Context): Context
     fun getAppCompatDelegate(delegate: AppCompatDelegate): AppCompatDelegate
 }
 
@@ -42,7 +43,7 @@ class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
 
     override fun attachBaseContext(newBase: Context): Context = LocaleHelper.onAttach(newBase)
 
-    fun getApplicationContext(applicationContext: Context): Context =
+    override fun getApplicationContext(applicationContext: Context): Context =
         LocaleHelper.onAttach(applicationContext)
 
     override fun onPaused() {
