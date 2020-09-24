@@ -24,6 +24,9 @@ android {
     }
 }
 
+group = 'net.hubalek.android.commons'
+version = getVersionAccordingTheTag(project)
+
 println ("Publishing version $version")
 
 afterEvaluate {

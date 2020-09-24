@@ -1,6 +1,5 @@
 package com.zeugmasolutions.localehelper
 
-import LocaleConfigurationStorageImpl
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build

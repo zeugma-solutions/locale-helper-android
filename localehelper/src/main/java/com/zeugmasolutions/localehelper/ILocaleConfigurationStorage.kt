@@ -1,6 +1,7 @@
+package com.zeugmasolutions.localehelper
+
 import android.content.Context
 import android.content.SharedPreferences
-import com.zeugmasolutions.localehelper.LocaleHelper
 import java.util.*
 
 /**

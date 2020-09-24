@@ -21,8 +21,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-apply from: 'gradle-plugin-publish.gradle'
-
-group = 'net.hubalek.android.commons'
-version = getVersionAccordingTheTag(project)
