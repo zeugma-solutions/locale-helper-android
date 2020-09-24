@@ -1,0 +1,79 @@
+apply plugin: 'maven-publish'
+
+def getVersionAccordingTheTag(Project project) {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--abbrev=0', '--tags'
+        standardOutput = stdout
+    }
+    String verByGit = stdout.toString().trim()
+    String versionSuffix
+    try {
+        versionSuffix = propertyOrEnvVar(project, "versionSuffix", "VERSION_SUFFIX")
+    } catch(RuntimeException e) {
+        versionSuffix = ""
+    }
+    return verByGit + versionSuffix
+}
+
+
+ext {
+    getVersionAccordingTheTag = this.&getVersionAccordingTheTag
+}
+
+// Configure the destination repository with
+// S3 URL and access credentials
+
+static def propertyOrEnvVar(Project project, String p, String e) {
+    def projectProperty = project.findProperty(p)
+    if (projectProperty?.trim()) {
+        return projectProperty
+    }
+    if (System.properties.hasProperty(p)) {
+        return System.properties.getProperty(p)
+    } else {
+        def value = System.getenv(e)
+        if (value?.trim()) {
+            return value
+        } else {
+            throw new RuntimeException("Unable to get value of property $p/$e")
+        }
+    }
+}
+
+def s3repo = propertyOrEnvVar(project, "s3Repo", "S3_REPO")
+def s3accessKey = propertyOrEnvVar(project, "s3AccessKey", "S3_ACCESS_KEY")
+def s3secretKey = propertyOrEnvVar(project, "s3SecretKey", "S3_SECRET_KEY")
+
+def mavenHubalekNetRepo = propertyOrEnvVar(project, "mhnRepo", "MHN_REPO")
+def mavenHubalekNetUser = propertyOrEnvVar(project, "mhnUser", "MHN_USER")
+def mavenHubalekNetPassword = propertyOrEnvVar(project, "mhnPassword", "MHN_PASSWORD")
+
+publishing {
+    repositories {
+        maven {
+            name "s3"
+            url "$s3repo"
+            credentials(AwsCredentials) {
+                accessKey "$s3accessKey"
+                secretKey "$s3secretKey"
+            }
+        }
+        maven {
+            name "hubalekNet"
+            url "$mavenHubalekNetRepo"
+            credentials {
+                username "$mavenHubalekNetUser"
+                password "$mavenHubalekNetPassword"
+            }
+        }
+        maven {
+            name "hubalekNetSnapshot"
+            url "$mavenHubalekNetRepo/../snapshot"
+            credentials {
+                username "$mavenHubalekNetUser"
+                password "$mavenHubalekNetPassword"
+            }
+        }
+    }
+}

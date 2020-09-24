@@ -1,25 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.novoda.bintray-release'
 
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.novoda:bintray-release:0.9.2'
-    }
-}
-
-publish {
-    userOrg = 'zeugma-solutions'
-    groupId = 'com.zeugmasolutions.localehelper'
-    artifactId = 'locale-helper-android'
-    publishVersion = '1.1.0-beta1'
-    desc = 'Locale Helper Android'
-    website = 'https://github.com/zeugma-solutions/locale-helper-android'
-}
+apply from: '../gradle-plugin-publish.gradle'
 
 android {
     compileSdkVersion 29
@@ -37,6 +20,21 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+println ("Publishing version $version")
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId project.group
+                artifactId "localehelper"
+                version project.version
+            }
         }
     }
 }
