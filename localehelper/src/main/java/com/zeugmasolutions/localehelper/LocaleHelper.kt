@@ -9,7 +9,7 @@ object LocaleHelper {
 
     private var initialized = false
 
-    var configurationStorage = LocaleConfigurationStorageImpl()
+    var configurationStorage: ILocaleConfigurationStorage = LocaleConfigurationStorageImpl()
         set(value) {
             field = value
             initialized = false
