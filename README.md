@@ -14,7 +14,7 @@ However, there are cases where you would want to change the language of your app
 **Download**
 =
 ```groovy
-implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.0.4'
+implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.1.0'
 ```
 **Features**
 =
@@ -50,7 +50,7 @@ That's it.
 **(Option 2) Using delegates**
 
 This option requires you to do extra steps if you don't want to extend from base classes.
-1. On your custom Application class override `onAttach` and `onConfiguration` change methods.
+1. On your custom Application class override methods below. For more details check: [LocaleAwareApplication](https://github.com/zeugma-solutions/locale-helper-android/blob/15885c0716d0fc3866e3ce7688656c95801707e9/localehelper/src/main/java/com/zeugmasolutions/localehelper/LocaleHelperActivities.kt#L47)
 ```kotlin
 class MyApp : Application() {  
     private val localeAppDelegate = LocaleHelperApplicationDelegate()
@@ -63,21 +63,20 @@ class MyApp : Application() {
         super.onConfigurationChanged(newConfig)
         localeAppDelegate.onConfigurationChanged(this)
     } 
+    
+    override fun getApplicationContext(): Context =
+    	LocaleHelper.onAttach(super.getApplicationContext())
 }
 ```
-2. On your base activity class override `onAttach` and add a helper method
+2. On your base activity class override methods below. For more details check: [LocaleAwareCompatActivity](https://github.com/zeugma-solutions/locale-helper-android/blob/15885c0716d0fc3866e3ce7688656c95801707e9/localehelper/src/main/java/com/zeugmasolutions/localehelper/LocaleHelperActivities.kt#L10)
 ```kotlin
 open class BaseActivity : AppCompatActivity() {  
-    private val localeDelegate = LocaleHelperActivityDelegateImpl()
+    private val localeDelegate: LocaleHelperActivityDelegate = LocaleHelperActivityDelegateImpl()
+
+    override fun getDelegate() = localeDelegate.getAppCompatDelegate(super.getDelegate())
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(localeDelegate.attachBaseContext(newBase))
-    }
-    
-    override fun applyOverrideConfiguration(overrideConfiguration: Configuration?) {
-        super.applyOverrideConfiguration(
-            localeDelegate.applyOverrideConfiguration(baseContext, overrideConfiguration)
-        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,12 +93,18 @@ open class BaseActivity : AppCompatActivity() {
         super.onPause()
         localeDelegate.onPaused()
     }
-    
-    override fun getResources(): Resources = localeDelegate.getResources(super.getResources())
+
+    override fun createConfigurationContext(overrideConfiguration: Configuration): Context {
+        val context = super.createConfigurationContext(overrideConfiguration)
+        return LocaleHelper.onAttach(context)
+    }
+
+    override fun getApplicationContext(): Context =
+        localeDelegate.getApplicationContext(super.getApplicationContext())
 
     open fun updateLocale(locale: Locale) {
         localeDelegate.setLocale(this, locale)
-    }  
+    } 
 }
 ```
 **Usage**
