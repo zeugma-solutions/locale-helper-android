@@ -43,8 +43,7 @@ class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
 
     override fun attachBaseContext(newBase: Context): Context = LocaleHelper.onAttach(newBase)
 
-    override fun getApplicationContext(applicationContext: Context): Context =
-        LocaleHelper.onAttach(applicationContext)
+    override fun getApplicationContext(applicationContext: Context): Context = applicationContext
 
     override fun onPaused() {
         locale = Locale.getDefault()
