@@ -38,31 +38,37 @@ class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
     }
 
     override fun setLocale(activity: Activity, newLocale: Locale?) {
-        Log.d("LocaleHelperDelegates", "Setting new locale $newLocale and recreating activity")
+        Log.d(LOG_TAG, "Setting new locale `${newLocale}` and recreating activity `${activity.javaClass.name}`")
         LocaleHelper.setLocale(activity, newLocale)
         locale = LocaleHelper.getLocale(activity)
         activity.recreate()
     }
 
-    override fun attachBaseContext(newBase: Context): Context = LocaleHelper.onAttach(newBase)
+    override fun attachBaseContext(newBase: Context): Context {
+        return LocaleHelper.onAttach(newBase)
+    }
 
-    override fun getApplicationContext(applicationContext: Context): Context =
-        LocaleHelper.onAttach(applicationContext)
+    override fun getApplicationContext(applicationContext: Context): Context {
+        return LocaleHelper.onAttach(applicationContext)
+    }
 
     override fun onPaused(activity: Activity) {
-        locale = LocaleHelper.getLocale(activity)
+        val localeFromHelper = LocaleHelper.getLocale(activity)
+        Log.d(LOG_TAG, "Remembering locale `$localeFromHelper` in `${activity.javaClass.name}`")
+        locale = localeFromHelper
     }
 
     override fun onResumed(activity: Activity) {
-        Log.d("LocaleHelperDelegates", "On resume ($locale vs ${LocaleHelper.getLocale(activity)})...")
-        if (locale == LocaleHelper.getLocale(activity)) return
+        val localeFromHelper = LocaleHelper.getLocale(activity)
+        Log.d(LOG_TAG, "onResume (Comparing `$locale` vs `$localeFromHelper`)")
+        if (locale == localeFromHelper) return
+        Log.d(LOG_TAG, "Calling `${activity.javaClass.name}`.recreate()")
         activity.recreate()
     }
 }
 
 class LocaleHelperApplicationDelegate {
     fun attachBaseContext(base: Context): Context = LocaleHelper.onAttach(base)
-
     fun onConfigurationChanged(context: Context) {
         LocaleHelper.onAttach(context)
     }

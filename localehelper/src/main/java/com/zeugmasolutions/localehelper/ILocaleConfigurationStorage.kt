@@ -52,6 +52,6 @@ class LocaleConfigurationStorageImpl : ILocaleConfigurationStorage {
                 .putString(SELECTED_COUNTRY, locale.country)
 
         }
-            edit.apply()
+        edit.apply()
     }
 }
