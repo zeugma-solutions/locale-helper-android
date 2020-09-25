@@ -28,7 +28,7 @@ open class LocaleAwareCompatActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        localeDelegate.onPaused()
+        localeDelegate.onPaused(this)
     }
 
     override fun createConfigurationContext(overrideConfiguration: Configuration): Context {
@@ -39,7 +39,7 @@ open class LocaleAwareCompatActivity : AppCompatActivity() {
     override fun getApplicationContext(): Context =
         localeDelegate.getApplicationContext(super.getApplicationContext())
 
-    open fun updateLocale(locale: Locale) {
+    open fun updateLocale(locale: Locale?) {
         localeDelegate.setLocale(this, locale)
     }
 }

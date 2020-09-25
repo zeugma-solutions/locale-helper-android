@@ -13,5 +13,6 @@
     <string name="main_second_activity">第二页 ></string>
     <string name="back_button"><![CDATA[< 回去]]></string>
     <string name="main_activity_to_ur_button">乌尔都语</string>
+    <string name="main_activity_to_system_button">" 系統"</string>
 
 </resources>

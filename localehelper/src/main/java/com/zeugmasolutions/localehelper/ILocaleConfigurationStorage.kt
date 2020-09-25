@@ -8,7 +8,7 @@ import java.util.*
  * Allows to store locale configuration in app specific preferences system.
  */
 interface ILocaleConfigurationStorage {
-    fun loadLocale(context: Context): Locale
+    fun loadLocale(context: Context): Locale?
     fun storeLocale(context: Context, locale: Locale?)
 }
 
@@ -25,19 +25,33 @@ class LocaleConfigurationStorageImpl : ILocaleConfigurationStorage {
     private fun getPreferences(context: Context): SharedPreferences =
         context.getSharedPreferences(LocaleHelper::class.java.name, Context.MODE_PRIVATE)
 
-    override fun loadLocale(context: Context): Locale {
+    override fun loadLocale(context: Context): Locale? {
         val preferences = getPreferences(context)
-        val default = Locale.getDefault()
-        val language = preferences.getString(SELECTED_LANGUAGE, default.language) ?: return default
-        val country = preferences.getString(SELECTED_COUNTRY, default.country) ?: return default
-        return Locale(language, country)
+        return if (preferences.contains(SELECTED_COUNTRY) && preferences.contains(SELECTED_LANGUAGE)) {
+            val language = preferences.getString(SELECTED_LANGUAGE, null)
+            val country = preferences.getString(SELECTED_COUNTRY, null)
+            Locale(requireNotNull(language) {
+                "Inconsistent configuration"
+            }, requireNotNull(country) {
+                "Inconsistent configuration"
+            })
+        } else {
+            null
+        }
     }
 
     override fun storeLocale(context: Context, locale: Locale?) {
-        if (locale == null) return
-        getPreferences(context).edit()
-            .putString(SELECTED_LANGUAGE, locale.language)
-            .putString(SELECTED_COUNTRY, locale.country)
-            .apply()
+        val edit = getPreferences(context).edit()
+        if (locale == null) {
+            edit
+                .remove(SELECTED_LANGUAGE)
+                .remove(SELECTED_COUNTRY)
+        } else {
+            edit
+                .putString(SELECTED_LANGUAGE, locale.language)
+                .putString(SELECTED_COUNTRY, locale.country)
+
+        }
+            edit.apply()
     }
 }

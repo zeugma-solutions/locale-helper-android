@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">[CS]Příklad Locale Helper</string>
+    <string name="main_activity_title">[CS] Titulek v češtině</string>
+    <string name="main_activity_desc">Toto je popisek v Češtině</string>
+    <string name="main_activity_about">Toto je text v Češtině</string>
+    <string name="main_activity_to_system_button">Systémový</string>
+    <string name="main_activity_to_tr_button">Turecky</string>
+    <string name="main_activity_to_en_button">Anglicky</string>
+    <string name="main_activity_toolbar_title">Titulek v češině</string>
+    <string name="main_activity_to_cs_button">Česky</string>
+</resources>

@@ -15,15 +15,17 @@ class MainActivity : BaseActivity() {
 
         setTitle(R.string.main_activity_title)
 
+        toSystemButton.setOnClickListener { updateLocale(null) }
         toTRButton.setOnClickListener { updateLocale(Locales.Turkish) }
         toENButton.setOnClickListener { updateLocale(Locale.ENGLISH) }
         toCNButton.setOnClickListener { updateLocale(Locale.CHINA) }
         toURButton.setOnClickListener { updateLocale(Locales.Urdu) }
+        toCSButton.setOnClickListener { updateLocale(Locale("cs", "CZ")) }
 
         secondButton.setOnClickListener { startActivity(Intent(this, SecondActivity::class.java)) }
     }
 
-    override fun updateLocale(locale: Locale) {
+    override fun updateLocale(locale: Locale?) {
         super.updateLocale(locale)
         setTitle(R.string.main_activity_title)
     }
