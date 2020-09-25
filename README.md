@@ -22,7 +22,8 @@ implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.1.0'
 2. Persists the changes in `Preferences` automatically
 3. Detects changes when activity loads from backstack
 4. Detects Right-To-Left (RTL) languages and updates layout direction
-5. Small footprint (~3KB, ~50 methods), easy to use
+5. Supports DayNight themes
+6. Small footprint (~3KB, ~50 methods), easy to use
 
 **Demo**
 =
