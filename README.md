@@ -57,6 +57,11 @@ class MyApp : Application() {
     private val localeAppDelegate = LocaleHelperApplicationDelegate()
 
     override fun attachBaseContext(base: Context) {
+        LocaleHelper.configurationBlock = {
+	    //Access configuration object to set exta setting
+	    //For eg: FontScale
+            it.fontScale = 1.0f 
+        }
         super.attachBaseContext(localeAppDelegate.attachBaseContext(base))
     }
 
@@ -77,6 +82,11 @@ open class BaseActivity : AppCompatActivity() {
     override fun getDelegate() = localeDelegate.getAppCompatDelegate(super.getDelegate())
 
     override fun attachBaseContext(newBase: Context) {
+    	LocaleHelper.configurationBlock = {
+	    //Access configuration object to set exta setting
+	    //For eg: FontScale
+            it.fontScale = 1.0f 
+        }
         super.attachBaseContext(localeDelegate.attachBaseContext(newBase))
     }
 

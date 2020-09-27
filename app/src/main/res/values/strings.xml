@@ -14,4 +14,5 @@
     <string name="main_activity_to_ur_button">Urdu</string>
     <string name="dark" translatable="false">Dark</string>
     <string name="light" translatable="false">Light</string>
+    <string name="accessibality_font_size">Accessibality: Font Size</string>
 </resources>
