@@ -16,7 +16,7 @@ publish {
     userOrg = 'zeugma-solutions'
     groupId = 'com.zeugmasolutions.localehelper'
     artifactId = 'locale-helper-android'
-    publishVersion = '1.0.4'
+    publishVersion = '1.1.1'
     desc = 'Locale Helper Android'
     website = 'https://github.com/zeugma-solutions/locale-helper-android'
 }
@@ -43,12 +43,12 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 
-    //testing
+    // Testing
     testImplementation 'junit:junit:4.13'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
 
 repositories {
