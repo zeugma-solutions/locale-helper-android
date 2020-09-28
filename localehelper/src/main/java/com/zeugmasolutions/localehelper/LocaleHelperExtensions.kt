@@ -1,8 +1,12 @@
 package com.zeugmasolutions.localehelper
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import java.util.*
+
+val Context.currentLocale: Locale
+    get() = resources.configuration.currentLocale
 
 val Configuration.currentLocale: Locale
     get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

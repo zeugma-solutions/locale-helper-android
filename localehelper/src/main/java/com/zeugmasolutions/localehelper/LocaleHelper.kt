@@ -1,5 +1,6 @@
 package com.zeugmasolutions.localehelper
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
@@ -60,6 +61,10 @@ object LocaleHelper {
     }
 
     private fun updateContextResources(context: Context, locale: Locale): Context {
+        if (context.currentLocale == locale && context is Application) {
+            return context
+        }
+
         val resources = context.resources
         val configuration = resources.configuration
         configuration.setCurrentLocale(locale)

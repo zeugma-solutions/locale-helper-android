@@ -20,5 +20,7 @@ class SecondActivity : BaseActivity() {
         toURButton.setOnClickListener { updateLocale(Locales.Urdu) }
 
         backButton.setOnClickListener { finish() }
+
+        mapView.onCreate(savedInstanceState)
     }
 }
