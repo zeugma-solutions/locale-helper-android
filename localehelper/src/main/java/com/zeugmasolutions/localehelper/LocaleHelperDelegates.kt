@@ -61,4 +61,6 @@ class LocaleHelperApplicationDelegate {
     fun onConfigurationChanged(context: Context) {
         LocaleHelper.onAttach(context)
     }
+
+    fun getApplicationContext(context: Context): Context = LocaleHelper.onAttach(context)
 }

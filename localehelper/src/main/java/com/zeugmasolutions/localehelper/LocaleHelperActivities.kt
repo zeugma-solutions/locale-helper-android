@@ -57,5 +57,5 @@ open class LocaleAwareApplication : Application() {
     }
 
     override fun getApplicationContext(): Context =
-        LocaleHelper.onAttach(super.getApplicationContext())
+        localeAppDelegate.getApplicationContext(super.getApplicationContext())
 }
