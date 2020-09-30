@@ -27,7 +27,13 @@ android {
 group = 'net.hubalek.android.commons'
 version = getVersionAccordingTheTag(project)
 
-println ("Publishing version $version")
+println("Publishing version $version")
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier = "sources"
+}
+
 
 afterEvaluate {
     publishing {
@@ -37,6 +43,7 @@ afterEvaluate {
                 groupId project.group
                 artifactId "localehelper"
                 version project.version
+                artifact sourceJar
             }
         }
     }

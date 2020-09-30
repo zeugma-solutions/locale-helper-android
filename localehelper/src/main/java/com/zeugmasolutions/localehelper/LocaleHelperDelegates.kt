@@ -3,7 +3,6 @@ package com.zeugmasolutions.localehelper
 import android.app.Activity
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.LocaleHelperAppCompatDelegate
@@ -69,7 +68,10 @@ class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
 
 class LocaleHelperApplicationDelegate {
     fun attachBaseContext(base: Context): Context = LocaleHelper.onAttach(base)
+
     fun onConfigurationChanged(context: Context) {
         LocaleHelper.onAttach(context)
     }
+
+    fun getApplicationContext(context: Context): Context = LocaleHelper.onAttach(context)
 }
