@@ -17,8 +17,8 @@ open class LocaleAwareCompatActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         localeDelegate.onCreate(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onResume() {
