@@ -1,15 +1,24 @@
 package com.zeugmasolutions.localehelper
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import java.util.*
 
+
 object LocaleHelper {
     private const val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
     private const val SELECTED_COUNTRY = "Locale.Helper.Selected.Country"
     private var initialized = false
+
+
+    /**
+     * Returns the system [Locale]
+     */
+    @SuppressLint("ConstantLocale")
+    val systemLocale: Locale = Locale.getDefault()
 
     /**
      * Attach the selected or default [Locale] to the [context]
