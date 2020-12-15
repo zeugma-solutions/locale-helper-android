@@ -14,7 +14,7 @@ However, there are cases where you would want to change the language of your app
 **Download**
 =
 ```groovy
-implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.1.2'
+implementation 'com.zeugmasolutions.localehelper:locale-helper-android:1.1.3'
 ```
 **Features**
 =
