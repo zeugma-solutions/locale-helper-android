@@ -16,17 +16,17 @@ publish {
     userOrg = 'zeugma-solutions'
     groupId = 'com.zeugmasolutions.localehelper'
     artifactId = 'locale-helper-android'
-    publishVersion = '1.1.2'
+    publishVersion = '1.1.3'
     desc = 'Locale Helper Android'
     website = 'https://github.com/zeugma-solutions/locale-helper-android'
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
