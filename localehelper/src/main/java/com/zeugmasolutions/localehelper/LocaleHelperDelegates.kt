@@ -6,7 +6,7 @@ import android.os.Build
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.LocaleHelperAppCompatDelegate
-import java.util.Locale
+import java.util.*
 
 interface LocaleHelperActivityDelegate {
     fun setLocale(activity: Activity, newLocale: Locale)
