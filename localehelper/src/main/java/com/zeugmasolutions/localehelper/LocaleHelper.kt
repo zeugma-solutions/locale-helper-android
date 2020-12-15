@@ -5,14 +5,12 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
-import java.util.*
-
+import java.util.Locale
 
 object LocaleHelper {
     private const val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
     private const val SELECTED_COUNTRY = "Locale.Helper.Selected.Country"
     private var initialized = false
-
 
     /**
      * Returns the system [Locale]

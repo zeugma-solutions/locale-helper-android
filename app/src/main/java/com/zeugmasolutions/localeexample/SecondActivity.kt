@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.zeugmasolutions.localehelper.Locales
 import kotlinx.android.synthetic.main.activity_second.*
 import kotlinx.android.synthetic.main.view_language_buttons.*
-import java.util.*
+import java.util.Locale
 
 class SecondActivity : BaseActivity() {
 
