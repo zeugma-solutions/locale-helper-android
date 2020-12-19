@@ -68,7 +68,7 @@ object LocaleHelper {
     }
 
     private fun updateContextResources(context: Context, locale: Locale): Context {
-        if (context.currentLocale == locale && context is Application) {
+        if (context is Application) {
             return context
         }
 
