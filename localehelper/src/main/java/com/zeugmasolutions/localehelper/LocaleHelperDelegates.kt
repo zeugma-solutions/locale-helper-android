@@ -37,12 +37,14 @@ class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
     }
 
     override fun setLocale(activity: Activity, newLocale: Locale) {
+        if( locale == newLocale && LocaleHelper.hasLocaleSelection(activity) ) return
         LocaleHelper.setLocale(activity, newLocale)
         locale = newLocale
         activity.recreate()
     }
 
     override fun clearLocaleSelection(activity: Activity) {
+        if( !LocaleHelper.hasLocaleSelection(activity) ) return
         LocaleHelper.clearLocaleSelection(activity)
         locale = LocaleHelper.systemLocale
         activity.recreate()
