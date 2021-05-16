@@ -15,17 +15,15 @@ class SecondActivity : BaseActivity() {
 
         setTitle(R.string.second_activity_title)
 
-        language_picker.setOnCheckedChangeListener { group, checkedId ->
+        language_picker.setOnCheckedChangeListener { _, checkedId ->
             when(checkedId) {
-                R.id.language_default -> updateLocale(null)
+                R.id.language_default -> clearLocaleSelection()
                 R.id.language_tr -> updateLocale(Locales.Turkish)
                 R.id.language_en -> updateLocale(Locales.EnglishUS)
                 R.id.language_cn -> updateLocale(Locale.CHINA)
                 R.id.language_ur -> updateLocale(Locales.Urdu)
             }
         }
-
-        setLanguageSelection()
 
         backButton.setOnClickListener { finish() }
 
@@ -36,7 +34,7 @@ class SecondActivity : BaseActivity() {
         super.onResume()
         setLanguageSelection()
     }
-    
+
     private fun setLanguageSelection() {
         var languageSelection = R.id.language_default
         if( LocaleHelper.hasLocaleSelection(this) ) {
