@@ -10,6 +10,7 @@ import java.util.Locale
 
 interface LocaleHelperActivityDelegate {
     fun setLocale(activity: Activity, newLocale: Locale)
+    fun clearLocaleSelection(activity: Activity)
     fun attachBaseContext(newBase: Context): Context
     fun onPaused()
     fun onResumed(activity: Activity)
@@ -38,6 +39,12 @@ class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
     override fun setLocale(activity: Activity, newLocale: Locale) {
         LocaleHelper.setLocale(activity, newLocale)
         locale = newLocale
+        activity.recreate()
+    }
+
+    override fun clearLocaleSelection(activity: Activity) {
+        LocaleHelper.clearLocaleSelection(activity)
+        locale = LocaleHelper.systemLocale
         activity.recreate()
     }
 

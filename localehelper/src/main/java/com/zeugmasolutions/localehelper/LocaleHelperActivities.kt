@@ -39,8 +39,13 @@ open class LocaleAwareCompatActivity : AppCompatActivity() {
     override fun getApplicationContext(): Context =
         localeDelegate.getApplicationContext(super.getApplicationContext())
 
-    open fun updateLocale(locale: Locale) {
-        localeDelegate.setLocale(this, locale)
+    open fun updateLocale(locale: Locale?) {
+        if( locale != null ) {
+            localeDelegate.setLocale(this, locale)
+        }
+        else {
+            localeDelegate.clearLocaleSelection(this)
+        }
     }
 }
 

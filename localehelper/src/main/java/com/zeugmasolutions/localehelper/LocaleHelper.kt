@@ -35,6 +35,26 @@ object LocaleHelper {
     fun getLocale(context: Context): Locale = load(context)
 
     /**
+     * Clears any saved locale selections and returns app to system default
+     */
+    fun clearLocaleSelection(context: Context): Context {
+        getPreferences(context).edit()
+            .remove(SELECTED_LANGUAGE)
+            .remove(SELECTED_COUNTRY)
+            .apply()
+        Locale.setDefault(systemLocale)
+        return updateContextResources(context, systemLocale)
+    }
+
+    /**
+     * Returns if a user-specified locale has been set
+     */
+    fun hasLocaleSelection(context: Context): Boolean {
+        val prefs = getPreferences(context)
+        return prefs.contains(SELECTED_COUNTRY) && prefs.contains(SELECTED_COUNTRY)
+    }
+
+    /**
      * Sets [locale] for [context] and persist the selection in [SharedPreferences]
      */
     fun setLocale(context: Context, locale: Locale): Context {
