@@ -2,6 +2,7 @@ package com.zeugmasolutions.localeexample
 
 import android.content.Intent
 import android.os.Bundle
+import com.zeugmasolutions.localehelper.LocaleHelper
 import com.zeugmasolutions.localehelper.Locales
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_language_buttons.*
@@ -15,16 +16,46 @@ class MainActivity : BaseActivity() {
 
         setTitle(R.string.main_activity_title)
 
-        toTRButton.setOnClickListener { updateLocale(Locales.Turkish) }
-        toENButton.setOnClickListener { updateLocale(Locale.ENGLISH) }
-        toCNButton.setOnClickListener { updateLocale(Locale.CHINA) }
-        toURButton.setOnClickListener { updateLocale(Locales.Urdu) }
+        language_picker.setOnCheckedChangeListener { _, checkedId ->
+            when(checkedId) {
+                R.id.language_default -> clearLocaleSelection()
+                R.id.language_tr -> updateLocale(Locales.Turkish)
+                R.id.language_en -> updateLocale(Locales.EnglishUS)
+                R.id.language_cn -> updateLocale(Locale.CHINA)
+                R.id.language_ur -> updateLocale(Locales.Urdu)
+            }
+        }
 
         secondButton.setOnClickListener { startActivity(Intent(this, SecondActivity::class.java)) }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setLanguageSelection()
     }
 
     override fun updateLocale(locale: Locale) {
         super.updateLocale(locale)
         setTitle(R.string.main_activity_title)
+    }
+
+    override fun clearLocaleSelection() {
+        super.clearLocaleSelection()
+        setTitle(R.string.main_activity_title)
+    }
+
+    private fun setLanguageSelection() {
+        var languageSelection = R.id.language_default
+        if( LocaleHelper.hasLocaleSelection(this) ) {
+            languageSelection = when(LocaleHelper.getLocale(this)) {
+                Locales.Turkish -> R.id.language_tr
+                Locales.EnglishUS -> R.id.language_en
+                Locale.CHINA -> R.id.language_cn
+                Locales.Urdu -> R.id.language_ur
+                else -> R.id.language_default
+            }
+        }
+
+        language_picker.check(languageSelection)
     }
 }

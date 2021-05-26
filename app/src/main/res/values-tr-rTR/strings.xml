@@ -4,6 +4,7 @@
     <string name="main_activity_title">[TR] Bu baslik Turkcedir</string>
     <string name="main_activity_desc">Bu aciklama yazisi Turkcedir.</string>
     <string name="main_activity_about">Bu hakkinda yazisi Turkcedir.</string>
+    <string name="main_activity_to_default_button">Varsayılan</string>
     <string name="main_activity_to_tr_button">Turkce</string>
     <string name="main_activity_to_en_button">Ingilizce</string>
     <string name="main_activity_toolbar_title">Turkce Baslik</string>

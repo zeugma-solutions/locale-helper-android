@@ -3,6 +3,7 @@
     <string name="main_activity_title">[EN] This title is in English</string>
     <string name="main_activity_desc">This is the description text in English.</string>
     <string name="main_activity_about">This is about text in English.</string>
+    <string name="main_activity_to_default_button">Default</string>
     <string name="main_activity_to_tr_button">Turkish</string>
     <string name="main_activity_to_en_button">English</string>
     <string name="main_activity_toolbar_title">Title in English</string>

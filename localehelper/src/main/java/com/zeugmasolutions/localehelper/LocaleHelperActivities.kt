@@ -42,6 +42,10 @@ open class LocaleAwareCompatActivity : AppCompatActivity() {
     open fun updateLocale(locale: Locale) {
         localeDelegate.setLocale(this, locale)
     }
+
+    open fun clearLocaleSelection() {
+        localeDelegate.clearLocaleSelection(this)
+    }
 }
 
 open class LocaleAwareApplication : Application() {

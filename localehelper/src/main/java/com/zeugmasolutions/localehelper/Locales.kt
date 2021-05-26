@@ -11,7 +11,8 @@ object Locales {
     val Bulgarian: Locale by lazy { Locale("bg", "BG") }
     val Danish: Locale by lazy { Locale("da", "DK") }
     val Dutch: Locale by lazy { Locale("nl", "NL") }
-    val English: Locale by lazy { Locale("en", "US") }
+    val EnglishUS: Locale by lazy { Locale("en", "US") }
+    val EnglishUK: Locale by lazy { Locale("en", "GB") }
     val Estonian: Locale by lazy { Locale("et", "EE") }
     val Filipino: Locale by lazy { Locale("fil", "PH") }
     val Finnish: Locale by lazy { Locale("fi", "FI") }
