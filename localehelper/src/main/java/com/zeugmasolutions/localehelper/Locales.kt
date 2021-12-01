@@ -1,6 +1,6 @@
 package com.zeugmasolutions.localehelper
 
-import java.util.*
+import java.util.Locale
 
 object Locales {
     val Afrikaans: Locale by lazy { Locale("af", "ZA") }
