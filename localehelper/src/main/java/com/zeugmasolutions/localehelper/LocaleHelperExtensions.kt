@@ -3,7 +3,7 @@ package com.zeugmasolutions.localehelper
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
-import java.util.*
+import java.util.Locale
 
 val Context.currentLocale: Locale
     get() = resources.configuration.currentLocale

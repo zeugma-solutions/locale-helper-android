@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import java.util.*
+import java.util.Locale
 
 open class LocaleAwareCompatActivity : AppCompatActivity() {
     private val localeDelegate: LocaleHelperActivityDelegate = LocaleHelperActivityDelegateImpl()
@@ -17,8 +17,8 @@ open class LocaleAwareCompatActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         localeDelegate.onCreate(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onResume() {

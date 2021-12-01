@@ -1,5 +1,6 @@
 package com.zeugmasolutions.localehelper
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
@@ -7,6 +8,7 @@ import android.content.res.Resources
 import android.os.Build
 import androidx.core.os.ConfigurationCompat
 import java.util.*
+import java.util.Locale
 
 object LocaleHelper {
 
@@ -17,6 +19,12 @@ object LocaleHelper {
             field = value
             initialized = false
         }
+
+    /**
+     * Returns the system [Locale]
+     */
+    @SuppressLint("ConstantLocale")
+    val systemLocale: Locale = Locale.getDefault()
 
     /**
      * Attach the selected or default [Locale] to the [context]
