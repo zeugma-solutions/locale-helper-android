@@ -1,13 +1,13 @@
 package com.zeugmasolutions.localehelper
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.os.Build
+import android.view.ContextThemeWrapper
 import androidx.core.os.ConfigurationCompat
-import java.util.*
+import java.lang.Exception
 import java.util.Locale
 
 object LocaleHelper {
@@ -21,12 +21,6 @@ object LocaleHelper {
         }
 
     /**
-     * Returns the system [Locale]
-     */
-    @SuppressLint("ConstantLocale")
-    val systemLocale: Locale = Locale.getDefault()
-
-    /**
      * Attach the selected or default [Locale] to the [context]
      */
     fun onAttach(context: Context): Context {
@@ -38,7 +32,7 @@ object LocaleHelper {
         return updateContextResources(context, Locale.getDefault())
     }
 
-    fun getSystemLocale(): Locale {
+    private fun getSystemLocale(): Locale {
         val locales = ConfigurationCompat.getLocales(Resources.getSystem().configuration)
         return if (locales.isEmpty) {
             Locale.US
@@ -94,6 +88,10 @@ object LocaleHelper {
         }
 
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            log {
+                "Calling createConfigurationContext for configuration: ${configuration.toDebugString()} " +
+                        "and context ${context.toDebugString()}"
+            }
             context.createConfigurationContext(configuration)
         } else {
             @Suppress("DEPRECATION")

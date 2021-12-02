@@ -5,13 +5,17 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.view.ActionMode
 import androidx.appcompat.widget.Toolbar
+import com.zeugmasolutions.localehelper.LOG_TAG
 import com.zeugmasolutions.localehelper.LocaleHelper
+import com.zeugmasolutions.localehelper.log
+import com.zeugmasolutions.localehelper.toDebugString
 
 class LocaleHelperAppCompatDelegate(private val superDelegate: AppCompatDelegate) :
     AppCompatDelegate() {
@@ -54,8 +58,16 @@ class LocaleHelperAppCompatDelegate(private val superDelegate: AppCompatDelegate
     override fun addContentView(v: View?, lp: ViewGroup.LayoutParams?) =
         superDelegate.addContentView(v, lp)
 
-    override fun attachBaseContext2(context: Context) =
-        wrap(superDelegate.attachBaseContext2(super.attachBaseContext2(context)))
+    override fun attachBaseContext2(originalContext: Context): Context {
+        val superDelegateContext = super.attachBaseContext2(originalContext)
+        val wrappedContext = wrap(superDelegateContext)
+        log {
+            "\n -> " + originalContext.toDebugString() +
+            "\n -> appCompatDelegateContext (AppCompatDelegate): " + superDelegateContext.toDebugString() +
+            "\n -> wrappedContext: " + wrappedContext.toDebugString() + "\n"
+        }
+        return wrappedContext
+    }
 
     override fun setTitle(title: CharSequence?) = superDelegate.setTitle(title)
 
@@ -104,4 +116,6 @@ class LocaleHelperAppCompatDelegate(private val superDelegate: AppCompatDelegate
     override fun getLocalNightMode() = superDelegate.localNightMode
 
     private fun wrap(context: Context): Context = LocaleHelper.onAttach(context)
+
+    override fun attachBaseContext(context: Context?) = superDelegate.attachBaseContext(context)
 }

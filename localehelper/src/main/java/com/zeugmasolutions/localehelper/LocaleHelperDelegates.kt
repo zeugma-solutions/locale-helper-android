@@ -3,6 +3,7 @@ package com.zeugmasolutions.localehelper
 import android.app.Activity
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.app.LocaleHelperAppCompatDelegate
@@ -10,7 +11,7 @@ import java.util.Locale
 
 interface LocaleHelperActivityDelegate {
     fun setLocale(activity: Activity, newLocale: Locale?)
-    fun attachBaseContext(newBase: Context): Context
+    fun attachBaseContext2(newBase: Context): Context
     fun onPaused(activity: Activity)
     fun onResumed(activity: Activity)
     fun onCreate(activity: Activity)
@@ -37,13 +38,16 @@ class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
     }
 
     override fun setLocale(activity: Activity, newLocale: Locale?) {
-        Log.d(LOG_TAG, "Setting new locale `${newLocale}` and recreating activity `${activity.javaClass.name}`")
+        Log.d(
+            LOG_TAG,
+            "Setting new locale `${newLocale}` and recreating activity `${activity.javaClass.name}`"
+        )
         LocaleHelper.setLocale(activity, newLocale)
         locale = LocaleHelper.getLocale(activity)
         activity.recreate()
     }
 
-    override fun attachBaseContext(newBase: Context): Context {
+    override fun attachBaseContext2(newBase: Context): Context {
         return LocaleHelper.onAttach(newBase)
     }
 
@@ -53,15 +57,15 @@ class LocaleHelperActivityDelegateImpl : LocaleHelperActivityDelegate {
 
     override fun onPaused(activity: Activity) {
         val localeFromHelper = LocaleHelper.getLocale(activity)
-        Log.d(LOG_TAG, "Remembering locale `$localeFromHelper` in `${activity.javaClass.name}`")
+        log { "Remembering locale `$localeFromHelper` in `${activity.javaClass.name}`" }
         locale = localeFromHelper
     }
 
     override fun onResumed(activity: Activity) {
         val localeFromHelper = LocaleHelper.getLocale(activity)
-        Log.d(LOG_TAG, "onResume (Comparing `$locale` vs `$localeFromHelper`)")
+        log { "onResume (Comparing `$locale` vs `$localeFromHelper`)" }
         if (locale == localeFromHelper) return
-        Log.d(LOG_TAG, "Calling `${activity.javaClass.name}`.recreate()")
+        log { "Calling `${activity.javaClass.name}`.recreate()" }
         activity.recreate()
     }
 }
