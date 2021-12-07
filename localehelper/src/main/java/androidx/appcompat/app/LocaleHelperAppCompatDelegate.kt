@@ -54,8 +54,10 @@ class LocaleHelperAppCompatDelegate(private val superDelegate: AppCompatDelegate
     override fun addContentView(v: View?, lp: ViewGroup.LayoutParams?) =
         superDelegate.addContentView(v, lp)
 
-    override fun attachBaseContext2(context: Context) =
-        wrap(superDelegate.attachBaseContext2(super.attachBaseContext2(context)))
+    override fun attachBaseContext2(originalContext: Context): Context {
+        val superDelegateContext = super.attachBaseContext2(originalContext)
+        return wrap(superDelegateContext)
+    }
 
     override fun setTitle(title: CharSequence?) = superDelegate.setTitle(title)
 
