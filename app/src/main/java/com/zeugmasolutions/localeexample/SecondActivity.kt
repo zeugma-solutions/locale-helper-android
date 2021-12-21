@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.zeugmasolutions.localehelper.Locales
 import kotlinx.android.synthetic.main.activity_second.*
 import kotlinx.android.synthetic.main.view_language_buttons.*
-import java.util.Locale
+import java.util.*
 
 class SecondActivity : BaseActivity() {
 
@@ -20,7 +20,5 @@ class SecondActivity : BaseActivity() {
         toURButton.setOnClickListener { updateLocale(Locales.Urdu) }
 
         backButton.setOnClickListener { finish() }
-
-        mapView.onCreate(savedInstanceState)
     }
 }
