@@ -12,11 +12,7 @@ open class LocaleAwareCompatActivity : AppCompatActivity() {
 
     override fun getDelegate() = localeDelegate.getAppCompatDelegate(super.getDelegate())
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(localeDelegate.attachBaseContext(newBase))
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         localeDelegate.onCreate(this)
         super.onCreate(savedInstanceState)
     }
