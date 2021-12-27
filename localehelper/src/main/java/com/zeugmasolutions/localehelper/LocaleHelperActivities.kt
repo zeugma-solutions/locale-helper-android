@@ -47,10 +47,6 @@ open class LocaleAwareCompatActivity : AppCompatActivity() {
 open class LocaleAwareApplication : Application() {
     private val localeAppDelegate = LocaleHelperApplicationDelegate()
 
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(localeAppDelegate.attachBaseContext(base))
-    }
-
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         localeAppDelegate.onConfigurationChanged(this)
